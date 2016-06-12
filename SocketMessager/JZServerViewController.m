@@ -8,9 +8,10 @@
 
 #import "JZServerViewController.h"
 #import "GCDAsyncSocket.h"
-#import <ifaddrs.h>
-#import <arpa/inet.h>
 #import "JZSocketManager.h"
+#import "JZMessageModel.h"
+#import "JZMessageModelAllClientArray.h"
+#import "JZMessageModelTextMsg.h"
 
 @interface JZServerViewController ()<GCDAsyncSocketDelegate>
 
@@ -33,8 +34,6 @@
     [super viewDidLoad];
     portNumber = 8000;
     
-    _logTextView.scrollEnabled= NO;
-    
     socketArray = [NSMutableArray array];
     // Do any additional setup after loading the view.
     socketServer = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
@@ -45,12 +44,14 @@
         
     }else
     {
-        _addressLabel.text = [NSString stringWithFormat:@"%@:%d",[self getIPAddress],portNumber];
+        _addressLabel.text = [NSString stringWithFormat:@"%@:%d",[[JZSocketManager sharedManager] getIPAddress],portNumber];
         [NSTimer scheduledTimerWithTimeInterval:2.0
                                          target:self
                                        selector:@selector(boardAllConnectedDevices)
                                        userInfo:nil
                                         repeats:YES];
+        
+        [self.socketServer readDataWithTimeout:-1 tag:0];
     }
 }
 
@@ -73,11 +74,49 @@
                                                           timeStyle:NSDateFormatterFullStyle];
     [self updateLogTextView:[NSString stringWithFormat:@"%@\nSocket Disconnetted From %@:%hu :%@",dateString,[sock connectedHost],[sock connectedPort],[err debugDescription]]];
 }
+
+- (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
+{
+    JZMessageModel *msg = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    NSLog(@"%@",msg.msgType);
+    switch ([msg.msgType intValue])
+    {
+        case 0:
+        {}
+            break;
+        case 1:
+        {
+            JZMessageModelTextMsg * textMsg = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+            [self.socketServer readDataWithTimeout:-1 tag:TAG_MSG];
+            
+            NSArray *array = textMsg.receiverArray;
+            for (NSString *address in array)
+            {
+                NSArray *addresses = [address componentsSeparatedByString:@":"];
+                NSString *ip = [addresses objectAtIndex:0];
+                for (GCDAsyncSocket *socket in self.socketArray)
+                {
+                    if ([[socket connectedHost] isEqualToString:ip]) {
+                        [socket writeData:data withTimeout:-1 tag:TAG_MSG];
+                    }
+                }
+            }
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
 #pragma mark - Boardcast
 
 - (void)boardAllConnectedDevices
 {
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:[self getInfoArrayFromSocketArray:self.socketArray]];
+    [self checkSocketArrayAvailability];
+    JZMessageModelAllClientArray *msg = [[JZMessageModelAllClientArray alloc] init];
+    msg.allClients = [self getInfoArrayFromSocketArray:self.socketArray];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:msg];
     if (data)
     {
         for (GCDAsyncSocket *socket in self.socketArray)
@@ -86,6 +125,19 @@
             [socket readDataWithTimeout:-1 tag:TAG_DEVICEARRAY];
         }
     }
+}
+- (void)checkSocketArrayAvailability
+{
+    NSMutableArray *discardedItems = [NSMutableArray array];
+    for (GCDAsyncSocket *socket in self.socketArray)
+    {
+        if ([socket connectedHost])
+        {}else
+        {
+            [discardedItems addObject:socket];
+        }
+    }
+    [self.socketArray removeObjectsInArray:discardedItems];
 }
 - (NSMutableArray *)getInfoArrayFromSocketArray:(NSMutableArray *)allSocketArray
 {
@@ -103,6 +155,9 @@
 - (void)updateLogTextView:(NSString *)string
 {
     _logTextView.text = [_logTextView.text stringByAppendingString:[NSString stringWithFormat:@"\n%@",string]];
+    
+    NSRange range = NSMakeRange(_logTextView.text.length - 1, 1);
+    [_logTextView scrollRangeToVisible:range];
 }
 - (BOOL)prefersStatusBarHidden
 {
@@ -116,35 +171,6 @@
 
 - (IBAction)closeButtonPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-
-// Get IP Address
-- (NSString *)getIPAddress {
-    NSString *address = @"error";
-    struct ifaddrs *interfaces = NULL;
-    struct ifaddrs *temp_addr = NULL;
-    int success = 0;
-    // retrieve the current interfaces - returns 0 on success
-    success = getifaddrs(&interfaces);
-    if (success == 0) {
-        // Loop through linked list of interfaces
-        temp_addr = interfaces;
-        while(temp_addr != NULL) {
-            if(temp_addr->ifa_addr->sa_family == AF_INET) {
-                // Check if interface is en0 which is the wifi connection on the iPhone
-                if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
-                    // Get NSString from C String
-                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
-                }
-            }
-            temp_addr = temp_addr->ifa_next;
-        }
-    }
-    // Free memory
-    freeifaddrs(interfaces);
-    return address;
-    
 }
 
 

@@ -22,6 +22,10 @@
 		0D4040771D0DDC0600DA24F5 /* JZClientChatGroupSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4040761D0DDC0600DA24F5 /* JZClientChatGroupSelectionViewController.m */; };
 		0D4040881D0DF36300DA24F5 /* JZClientChatGroupSelectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4040861D0DF36300DA24F5 /* JZClientChatGroupSelectionTableViewCell.m */; };
 		0D4040891D0DF36300DA24F5 /* JZClientChatGroupSelectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D4040871D0DF36300DA24F5 /* JZClientChatGroupSelectionTableViewCell.xib */; };
+		0D40408C1D0E000300DA24F5 /* JZClientChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D40408B1D0E000300DA24F5 /* JZClientChatViewController.m */; };
+		0D4040901D0E0C2A00DA24F5 /* JZMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D40408F1D0E0C2A00DA24F5 /* JZMessageModel.m */; };
+		0D4040931D0E190C00DA24F5 /* JZMessageModelTextMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4040921D0E190C00DA24F5 /* JZMessageModelTextMsg.m */; };
+		0D4040961D0E193000DA24F5 /* JZMessageModelAllClientArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4040951D0E193000DA24F5 /* JZMessageModelAllClientArray.m */; };
 		581E8E49D3E54DBC73EE3C7B /* Pods_SocketMessager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA15AFA479AAB380051F523 /* Pods_SocketMessager.framework */; };
 		CC6A26B182F0A4CEBEA6FE7D /* Pods_SocketMessagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51005774C835E5BDB5FCB567 /* Pods_SocketMessagerTests.framework */; };
 		ECAE312179654358418C664C /* Pods_SocketMessagerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 662BE72F85A5EAAE11746563 /* Pods_SocketMessagerUITests.framework */; };
@@ -74,6 +78,14 @@
 		0D4040851D0DF36300DA24F5 /* JZClientChatGroupSelectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZClientChatGroupSelectionTableViewCell.h; sourceTree = "<group>"; };
 		0D4040861D0DF36300DA24F5 /* JZClientChatGroupSelectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZClientChatGroupSelectionTableViewCell.m; sourceTree = "<group>"; };
 		0D4040871D0DF36300DA24F5 /* JZClientChatGroupSelectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JZClientChatGroupSelectionTableViewCell.xib; sourceTree = "<group>"; };
+		0D40408A1D0E000300DA24F5 /* JZClientChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZClientChatViewController.h; sourceTree = "<group>"; };
+		0D40408B1D0E000300DA24F5 /* JZClientChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZClientChatViewController.m; sourceTree = "<group>"; };
+		0D40408E1D0E0C2A00DA24F5 /* JZMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMessageModel.h; sourceTree = "<group>"; };
+		0D40408F1D0E0C2A00DA24F5 /* JZMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMessageModel.m; sourceTree = "<group>"; };
+		0D4040911D0E190C00DA24F5 /* JZMessageModelTextMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMessageModelTextMsg.h; sourceTree = "<group>"; };
+		0D4040921D0E190C00DA24F5 /* JZMessageModelTextMsg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMessageModelTextMsg.m; sourceTree = "<group>"; };
+		0D4040941D0E193000DA24F5 /* JZMessageModelAllClientArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMessageModelAllClientArray.h; sourceTree = "<group>"; };
+		0D4040951D0E193000DA24F5 /* JZMessageModelAllClientArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMessageModelAllClientArray.m; sourceTree = "<group>"; };
 		51005774C835E5BDB5FCB567 /* Pods_SocketMessagerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SocketMessagerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56813EA90D5E0E8BF23EDF85 /* Pods-SocketMessagerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocketMessagerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SocketMessagerUITests/Pods-SocketMessagerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		662BE72F85A5EAAE11746563 /* Pods_SocketMessagerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SocketMessagerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +154,7 @@
 				0D40402C1D0D9BC500DA24F5 /* AppDelegate.m */,
 				0D4040311D0D9BC500DA24F5 /* Main.storyboard */,
 				0D4040671D0DD01400DA24F5 /* Controller */,
+				0D40408D1D0E003B00DA24F5 /* View */,
 				0D4040711D0DD07200DA24F5 /* Data */,
 				0D4040341D0D9BC500DA24F5 /* Assets.xcassets */,
 				0D4040361D0D9BC500DA24F5 /* LaunchScreen.storyboard */,
@@ -190,9 +203,8 @@
 				0D4040731D0DDBB600DA24F5 /* JZClientChatNaviController.m */,
 				0D4040751D0DDC0600DA24F5 /* JZClientChatGroupSelectionViewController.h */,
 				0D4040761D0DDC0600DA24F5 /* JZClientChatGroupSelectionViewController.m */,
-				0D4040851D0DF36300DA24F5 /* JZClientChatGroupSelectionTableViewCell.h */,
-				0D4040861D0DF36300DA24F5 /* JZClientChatGroupSelectionTableViewCell.m */,
-				0D4040871D0DF36300DA24F5 /* JZClientChatGroupSelectionTableViewCell.xib */,
+				0D40408A1D0E000300DA24F5 /* JZClientChatViewController.h */,
+				0D40408B1D0E000300DA24F5 /* JZClientChatViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -202,8 +214,24 @@
 			children = (
 				0D40406E1D0DD06F00DA24F5 /* JZSocketManager.h */,
 				0D40406F1D0DD06F00DA24F5 /* JZSocketManager.m */,
+				0D40408E1D0E0C2A00DA24F5 /* JZMessageModel.h */,
+				0D40408F1D0E0C2A00DA24F5 /* JZMessageModel.m */,
+				0D4040911D0E190C00DA24F5 /* JZMessageModelTextMsg.h */,
+				0D4040921D0E190C00DA24F5 /* JZMessageModelTextMsg.m */,
+				0D4040941D0E193000DA24F5 /* JZMessageModelAllClientArray.h */,
+				0D4040951D0E193000DA24F5 /* JZMessageModelAllClientArray.m */,
 			);
 			name = Data;
+			sourceTree = "<group>";
+		};
+		0D40408D1D0E003B00DA24F5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0D4040851D0DF36300DA24F5 /* JZClientChatGroupSelectionTableViewCell.h */,
+				0D4040861D0DF36300DA24F5 /* JZClientChatGroupSelectionTableViewCell.m */,
+				0D4040871D0DF36300DA24F5 /* JZClientChatGroupSelectionTableViewCell.xib */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		45AA02F270D334448D5F7C7C /* Pods */ = {
@@ -494,11 +522,15 @@
 				0D4040661D0DB5B700DA24F5 /* JZClientJoinServerViewController.m in Sources */,
 				0D4040601D0DA02D00DA24F5 /* JZMenuViewController.m in Sources */,
 				0D4040771D0DDC0600DA24F5 /* JZClientChatGroupSelectionViewController.m in Sources */,
+				0D4040961D0E193000DA24F5 /* JZMessageModelAllClientArray.m in Sources */,
 				0D4040631D0DAE5E00DA24F5 /* JZServerViewController.m in Sources */,
+				0D4040931D0E190C00DA24F5 /* JZMessageModelTextMsg.m in Sources */,
 				0D40402D1D0D9BC500DA24F5 /* AppDelegate.m in Sources */,
 				0D4040701D0DD06F00DA24F5 /* JZSocketManager.m in Sources */,
 				0D40402A1D0D9BC500DA24F5 /* main.m in Sources */,
+				0D40408C1D0E000300DA24F5 /* JZClientChatViewController.m in Sources */,
 				0D4040881D0DF36300DA24F5 /* JZClientChatGroupSelectionTableViewCell.m in Sources */,
+				0D4040901D0E0C2A00DA24F5 /* JZMessageModel.m in Sources */,
 				0D4040741D0DDBB600DA24F5 /* JZClientChatNaviController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

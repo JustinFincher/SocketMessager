@@ -252,6 +252,9 @@
                                             <state key="normal" title="Next">
                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
+                                            <connections>
+                                                <action selector="nextButtonPressed:" destination="eXk-gw-yfb" eventType="touchUpInside" id="yld-Xd-v8t"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -302,11 +305,88 @@
                     <connections>
                         <outlet property="onlineDevicesLabel" destination="09b-Qc-DSl" id="Oui-WO-Oye"/>
                         <outlet property="tableView" destination="tQp-YZ-9d2" id="zwg-zy-Rvc"/>
+                        <segue destination="vNv-xN-yU6" kind="show" identifier="clientSelectionToChatSegue" id="Tnx-Cw-Ah7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vjg-vy-hWZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2425" y="559"/>
+        </scene>
+        <!--Client Chat View Controller-->
+        <scene sceneID="fhH-90-8xv">
+            <objects>
+                <viewController id="vNv-xN-yU6" customClass="JZClientChatViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tPd-Qh-Oic"/>
+                        <viewControllerLayoutGuide type="bottom" id="fJm-dv-WAk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vMo-JE-t17">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CTw-Px-Iis">
+                                <rect key="frame" x="28" y="76" width="544" height="516"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S76-Bu-JIf">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="mLv-I8-vk8">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="请输入" clearsOnBeginEditing="YES" minimumFontSize="18" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cT7-dt-eBh">
+                                            <rect key="frame" x="64" y="8" width="520" height="44"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
+                                            <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                        </textField>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uYJ-Fw-W94">
+                                            <rect key="frame" x="8" y="13.5" width="50" height="33"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Oblique" family="Avenir" pointSize="15"/>
+                                            <state key="normal" title="Back">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="backButtonPressed:" destination="vNv-xN-yU6" eventType="touchUpInside" id="jQu-xh-X6S"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="cT7-dt-eBh" secondAttribute="trailing" constant="16" id="1yO-po-9iu"/>
+                                        <constraint firstItem="uYJ-Fw-W94" firstAttribute="centerY" secondItem="mLv-I8-vk8" secondAttribute="centerY" id="A7R-vB-zsb"/>
+                                        <constraint firstItem="cT7-dt-eBh" firstAttribute="leading" secondItem="uYJ-Fw-W94" secondAttribute="trailing" constant="6" id="AtH-oa-76l"/>
+                                        <constraint firstItem="cT7-dt-eBh" firstAttribute="top" secondItem="mLv-I8-vk8" secondAttribute="top" constant="8" id="Xqd-b0-xYt"/>
+                                        <constraint firstAttribute="bottom" secondItem="cT7-dt-eBh" secondAttribute="bottom" constant="8" id="aAe-Ez-P2d"/>
+                                        <constraint firstItem="uYJ-Fw-W94" firstAttribute="leading" secondItem="mLv-I8-vk8" secondAttribute="leading" constant="8" id="sDN-AV-tQE"/>
+                                        <constraint firstItem="cT7-dt-eBh" firstAttribute="leading" secondItem="mLv-I8-vk8" secondAttribute="leading" constant="64" id="uHe-q4-x4k"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.40000000000000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="CTw-Px-Iis" firstAttribute="leading" secondItem="vMo-JE-t17" secondAttribute="leadingMargin" constant="8" id="0Zv-lZ-M0Q"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CTw-Px-Iis" secondAttribute="trailing" constant="8" id="4GR-tc-VVe"/>
+                            <constraint firstItem="fJm-dv-WAk" firstAttribute="top" secondItem="CTw-Px-Iis" secondAttribute="bottom" constant="8" id="XAr-n9-iy3"/>
+                            <constraint firstItem="CTw-Px-Iis" firstAttribute="top" secondItem="S76-Bu-JIf" secondAttribute="bottom" constant="16" id="ZdC-ZO-7hI"/>
+                            <constraint firstItem="S76-Bu-JIf" firstAttribute="leading" secondItem="vMo-JE-t17" secondAttribute="leadingMargin" constant="-20" id="dGl-uD-RdP"/>
+                            <constraint firstItem="S76-Bu-JIf" firstAttribute="height" secondItem="vMo-JE-t17" secondAttribute="height" multiplier="0.1" id="iaK-Xn-jwj"/>
+                            <constraint firstItem="S76-Bu-JIf" firstAttribute="top" secondItem="vMo-JE-t17" secondAttribute="topMargin" id="s9T-S1-Iin"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="S76-Bu-JIf" secondAttribute="trailing" constant="-20" id="vHP-zI-znE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="chatHistoryTextView" destination="CTw-Px-Iis" id="Cml-zf-aEh"/>
+                        <outlet property="chatTextField" destination="cT7-dt-eBh" id="ylR-FK-tCl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PpX-Ka-25A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3085" y="559"/>
         </scene>
         <!--Server View Controller-->
         <scene sceneID="9ZE-dn-rp1">
@@ -369,6 +449,9 @@
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5lR-Ey-30Z">
                                         <rect key="frame" x="8" y="8" width="504" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="4mS-Q5-BXx"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Avenir-Oblique" family="Avenir" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>

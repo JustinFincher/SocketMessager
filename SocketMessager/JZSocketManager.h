@@ -7,8 +7,7 @@
 //
 
 #define TAG_DEVICEARRAY 0
-#define TAG_CAPABILITIES 11
-#define TAG_MSG 12
+#define TAG_MSG 1
 
 #import <Foundation/Foundation.h>
 #import "GCDAsyncSocket.h"
@@ -23,6 +22,11 @@
 
 - (BOOL)connectSocketIP:(NSString *)address
                    port:(NSString *)port;
+- (void)disconnectFromServer;
+- (void)sentMessage:(NSString *)text
+            toGroup:(NSArray *)array;
+
+- (NSString *)getIPAddress;
 
 @end
 
